@@ -31,6 +31,6 @@
   width: 80%;
 }
 .done {
-  color: black;
+  color: rgb(255, 255, 255);
   text-decoration: line-through;
 }

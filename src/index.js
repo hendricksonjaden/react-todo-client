@@ -14,6 +14,28 @@ class App extends React.Component {
       todos: []
     }
   }
+// Build a delete button!
+deleteItem = (id) => {
+  fetch(`https://localhost:5000/todo/${id}`, {
+    method: "DELETE"
+  })
+  .then(() => {
+    this.setState({
+      todos: this.state.todos.filter(item => {
+        return item.id !== id
+      })
+    })
+  })
+  .catch((error) => {
+    console.log('DeleteItem Error', error)
+  })
+}
+
+  renderTodos = () => {
+    return this.state.todos.map(item => {
+      return <TodoItem key={item.id} item={item} deleteItem={this.deleteItem}/>
+    })
+  }
 
   componentDidMount(){
     fetch("http://localhost:5000/todos")
@@ -22,12 +44,6 @@ class App extends React.Component {
       this.setState({
         todos: data
       })
-    })
-  }
-
-  renderTodos = () => {
-    return this.state.todos.map(item => {
-      return <TodoItem key={item.id} item={item}/>
     })
   }
 
