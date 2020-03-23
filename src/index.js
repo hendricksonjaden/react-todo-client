@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 // Build a delete button!
 deleteItem = (id) => {
-  fetch(`https://localhost:5000/todo/${id}`, {
+  fetch(`https://flask-todo-api-jaden.herokuapp.com/todo/${id}`, {
     method: "DELETE"
   })
   .then(() => {
@@ -38,7 +38,7 @@ deleteItem = (id) => {
   }
 
   componentDidMount(){
-    fetch("http://localhost:5000/todos")
+    fetch("https://flask-todo-api-jaden.herokuapp.com/todos")
     .then(response => response.json())
     .then(data => {
       this.setState({
@@ -51,7 +51,7 @@ deleteItem = (id) => {
     event.preventDefault()
     axios({
       method: "post",
-      url: "http://localhost:5000/todo",
+      url: "https://flask-todo-api-jaden.herokuapp.com/todo",
       headers: { "content-type": "application/json" },
       data: {
         title: this.state.todo,

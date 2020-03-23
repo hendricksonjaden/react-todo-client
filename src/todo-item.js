@@ -1,4 +1,6 @@
 import React from 'react';
+import Index from './index';
+
 class TodoItem extends React.Component {
     constructor(props) {
         super(props)
@@ -7,7 +9,7 @@ class TodoItem extends React.Component {
         }
     }
     toggleDone = () => {
-        fetch(`http://localhost:5000/todo/${this.props.item.id}`, {
+        fetch(`https://flask-todo-api-jaden.herokuapp.com/todo/${this.props.item.id}`, {
             method: "PATCH",
             headers: {"content-type": "application/json"},
             body: JSON.stringify({
@@ -34,6 +36,7 @@ class TodoItem extends React.Component {
                     onClick={this.toggleDone}
                 />
                 <p className={this.state.done ? "done" : null}>{this.props.item.title}</p>
+                <button onClick={this.props.deleteItem} >Delete</button>
             </div>
         )
     }
